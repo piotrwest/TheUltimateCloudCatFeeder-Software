@@ -1,0 +1,10 @@
+.pioenvs
+.piolibdeps
+.pio
+
+#Overriding PlatformIO generated content
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/extensions.json
+*.code-workspace

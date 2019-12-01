@@ -1,0 +1,27 @@
+[submodule "RavenousCat_ArduinoProject/externalLibs/ArduinoJson"]
+	path = RavenousCat_ArduinoProject/externalLibs/ArduinoJson
+	url = https://github.com/bblanchon/ArduinoJson.git
+[submodule "RavenousCat_ArduinoProject/externalLibs/HX711"]
+	path = RavenousCat_ArduinoProject/externalLibs/HX711
+	url = https://github.com/bogde/HX711
+[submodule "RavenousCat_ArduinoProject/externalLibs/CheapStepper"]
+	path = RavenousCat_ArduinoProject/externalLibs/CheapStepper
+	url = https://github.com/tyhenry/CheapStepper
+[submodule "RavenousCat_ArduinoProject/externalLibs/Protothreads"]
+	path = RavenousCat_ArduinoProject/externalLibs/Protothreads
+	url = https://github.com/shixf-labs/Protothreads.git
+[submodule "RavenousCat_ArduinoProject/externalLibs/OneWire"]
+	path = RavenousCat_ArduinoProject/externalLibs/OneWire
+	url = https://github.com/PaulStoffregen/OneWire.git
+[submodule "RavenousCat_ArduinoProject/externalLibs/Arduino-Temperature-Control-Library"]
+	path = RavenousCat_ArduinoProject/externalLibs/Arduino-Temperature-Control-Library
+	url = https://github.com/milesburton/Arduino-Temperature-Control-Library.git
+[submodule "RavenousCat_ArduinoProject/externalLibs/FastLED"]
+	path = RavenousCat_ArduinoProject/externalLibs/FastLED
+	url = https://github.com/FastLED/FastLED.git
+[submodule "RavenousCat_ArduinoProject/externalLibs/log4arduino"]
+	path = RavenousCat_ArduinoProject/externalLibs/log4arduino
+	url = https://github.com/jandelgado/log4arduino.git
+[submodule "RavenousCat_ArduinoProject/externalLibs/pubsubclient"]
+	path = RavenousCat_ArduinoProject/externalLibs/pubsubclient
+	url = https://github.com/knolleary/pubsubclient.git
