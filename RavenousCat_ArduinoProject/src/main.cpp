@@ -209,7 +209,6 @@ void loop()
     Buzzer::protothread();                //plays melody, if semaphore is set
 
     //TODO: remove, not used anymore
-    //TODO: remove MCP23S17 library as well (git submodule)
     timers[timerIndex++] = esp_timer_get_time();
     //FoodStorage::protothread();           //fetches food level sensor status, every minute stores to InMemoryStore
 

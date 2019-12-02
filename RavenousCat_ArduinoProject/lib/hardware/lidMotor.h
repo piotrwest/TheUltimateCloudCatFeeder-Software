@@ -7,7 +7,6 @@ class LidMotor
 
 public:
 	static void setup(int closeOffsetSteps, int openOffsetSteps);
-	static void manipulate();
 	static void reset();
 	static void openLid();
 	static void closeLid();

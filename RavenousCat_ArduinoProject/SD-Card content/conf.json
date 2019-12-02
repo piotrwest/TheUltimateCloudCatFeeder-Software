@@ -1,0 +1,35 @@
+{
+	"wifis": [
+		{
+			"id": "WiFi1_ReplaceMe",
+			"pass": "ReplaceMe"
+		},
+		{
+			"id": "WiFi2_ReplaceMe",
+			"pass": "ReplaceMe"
+		}
+	],
+	"gmtOffsetHours": -8,
+	"daylightOffsetHours": 1,
+	"closeLidHallOffsetMotorSteps": 335,
+	"openLidHallOffsetMotorSteps": 180,
+	"awsHostAddress": "replace.me.amazonaws.com",
+	"awsClientId": "ReplaceMe",
+	"foodSchedule": [
+		{
+			"hour": 05,
+			"minute": 00,
+			"grams": 6.0
+		},
+		{
+			"hour": 15,
+			"minute": 30,
+			"grams": 4.0
+		},
+		{
+			"hour": 17,
+			"minute": 00,
+			"grams": 555.0
+		}
+	]
+}
