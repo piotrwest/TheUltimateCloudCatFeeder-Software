@@ -20,6 +20,8 @@ bool LidMotor::actionInProgress;
 #define CLOSING_DIRECTION true
 #define OPENING_DIRECTION !CLOSING_DIRECTION
 
+#define LID_STEP_MOTOR_STEP_DELAY_US 2000
+
 void LidMotor::setup(int closeOffsetSteps, int openOffsetSteps)
 {
     LOG("Entering LidMotor setup");
@@ -33,7 +35,11 @@ void LidMotor::setup(int closeOffsetSteps, int openOffsetSteps)
     turnOffLidStepperMotor(); //set all to low - no need to keep the current flowing
 
     stepper = new CheapStepper(UC_PIN_LID_STEPPER_1, UC_PIN_LID_STEPPER_2, UC_PIN_LID_STEPPER_3, UC_PIN_LID_STEPPER_4);
-    stepper -> setRpm(6);
+    stepper -> setTotalSteps(6000000);
+    stepper -> setRpm(10); //doesn't matter, as we are "cheating" and setting the delay as 1us in the stepper library through "setTotalSteps".
+    //This is to avoid third party library modification. We can't use delay mechanism in the library, as it would block protothreads.
+    //Note: setRpm needs to be invoked after setting total steps.
+
     PT_INIT(&pt);
     LOG("Finished LidMotor setup");
 }
@@ -47,10 +53,13 @@ void LidMotor::reset()
         while (lidIsClosed())
         {
             stepper->step(OPENING_DIRECTION);
-            delayMicroseconds(stepper->getDelay());
+            delayMicroseconds(LID_STEP_MOTOR_STEP_DELAY_US);
         }
         LOG("Moved up enough. Moving up just a little bit more.");
-        stepper->move(OPENING_DIRECTION, 200); //move even a little bit more, just to be sure
+        for (int i = 0; i < 800; i++) { //move even a little bit more, just to be sure
+            stepper->step(OPENING_DIRECTION);
+            delayMicroseconds(LID_STEP_MOTOR_STEP_DELAY_US);
+        }
     }
 
     //now close
@@ -58,10 +67,13 @@ void LidMotor::reset()
     while (!lidIsClosed())
     {
         stepper->step(CLOSING_DIRECTION);
-        delayMicroseconds(stepper->getDelay());
+        delayMicroseconds(LID_STEP_MOTOR_STEP_DELAY_US);
     }
     LOG("Lid closed, but stepping offset (%d steps) now.", closeLidHallOffsetMotorSteps);
-    stepper->move(CLOSING_DIRECTION, closeLidHallOffsetMotorSteps);
+    for (int i = 0; i < closeLidHallOffsetMotorSteps; i++) {
+        stepper->step(CLOSING_DIRECTION);
+        delayMicroseconds(LID_STEP_MOTOR_STEP_DELAY_US);
+    }
     LOG("Lid fully closed.");
     turnOffLidStepperMotor();
 }
@@ -88,7 +100,6 @@ int LidMotor::protothread()
     static bool (*checkLidFunc)();
     static int stepCountSum;
     static int offsetStepCount;
-    static int microsecondsDelay;
     static DeadSimpleTimer::deadTimer stepperTimer;
     PT_BEGIN(&pt);
 
@@ -111,13 +122,12 @@ int LidMotor::protothread()
         actionInProgress = true;
         doOpenLid = doCloseLid = false;
         stepCountSum = 0;
-        microsecondsDelay = stepper->getDelay();
 
         while (!checkLidFunc())
         {
             stepper->step(currentDirection);
             stepCountSum++;
-            DeadSimpleTimer::setUs(&stepperTimer, microsecondsDelay);
+            DeadSimpleTimer::setUs(&stepperTimer, LID_STEP_MOTOR_STEP_DELAY_US);
             PT_WAIT_UNTIL(&pt, DeadSimpleTimer::expired(&stepperTimer));
         }
         LOG("LidMotor - steps until hall sensor triggered: %d", stepCountSum);
@@ -128,7 +138,7 @@ int LidMotor::protothread()
             for (; offsetStepCount >= 0; offsetStepCount--)
             {
                 stepper->step(currentDirection);
-                DeadSimpleTimer::setUs(&stepperTimer, microsecondsDelay);
+                DeadSimpleTimer::setUs(&stepperTimer, LID_STEP_MOTOR_STEP_DELAY_US);
                 PT_WAIT_UNTIL(&pt, DeadSimpleTimer::expired(&stepperTimer));
             }
 

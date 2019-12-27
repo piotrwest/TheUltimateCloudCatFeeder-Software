@@ -52,6 +52,7 @@ void setup()
 
   LedRing::setup(); //needed to display errors
   Buzzer::setup();  //just in case to say something :)
+  FoodMotor::setup();
 
   if (SimpleSdCard::mount())
   {
@@ -127,7 +128,6 @@ void setup()
   HallSensors::setup(); //allows to read HallSensors                                                                               
   LidMotor::setup(InMemoryStore::sdConfig.closeLidHallOffsetMotorSteps, InMemoryStore::sdConfig.openLidHallOffsetMotorSteps);
   LidMotor::reset(); //uses HallSensors inside
-  FoodMotor::setup();
   VoltageSensors::setup();
   TempSensor::setup();
   HealthMonitor::setup();
