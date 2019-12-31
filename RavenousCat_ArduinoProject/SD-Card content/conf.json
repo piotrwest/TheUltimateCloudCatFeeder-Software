@@ -11,14 +11,14 @@
 	],
 	"gmtOffsetHours": -8,
 	"daylightOffsetHours": 1,
-	"closeLidHallOffsetMotorSteps": 335,
-	"openLidHallOffsetMotorSteps": 180,
+	"closeLidHallOffsetMotorSteps": 315,
+	"openLidHallOffsetMotorSteps": 250,
 	"awsHostAddress": "replace.me.amazonaws.com",
 	"awsClientId": "ReplaceMe",
 	"foodSchedule": [
 		{
-			"hour": 05,
-			"minute": 00,
+			"hour": 5,
+			"minute": 0,
 			"grams": 6.0
 		},
 		{
@@ -28,7 +28,7 @@
 		},
 		{
 			"hour": 17,
-			"minute": 00,
+			"minute": 0,
 			"grams": 555.0
 		}
 	]
