@@ -1,0 +1,17 @@
+{
+  "name": "ParseRawCatFeederMetricsLambda",
+  "version": "1.0.0",
+  "description": "Parsing Raw Cat Feeder Metrics and forwarding them further.",
+  "main": "app.js",
+  "author": "PW",
+  "dependencies": {
+    "csv-stringify-as-promised": "^2.0.10"
+  },
+  "scripts": {
+    "test": "mocha tests/unit/"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.1.4"
+  }
+}
