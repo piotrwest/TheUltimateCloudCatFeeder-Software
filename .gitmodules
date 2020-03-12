@@ -25,3 +25,6 @@
 [submodule "RavenousCat_ArduinoProject/externalLibs/pubsubclient"]
 	path = RavenousCat_ArduinoProject/externalLibs/pubsubclient
 	url = https://github.com/knolleary/pubsubclient.git
+[submodule "RavenousCat_AWSCloud/Dashboard/assets/gentelella"]
+	path = RavenousCat_AWSCloud/Dashboard/assets/gentelella
+	url = https://github.com/ColorlibHQ/gentelella.git
